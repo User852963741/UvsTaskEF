@@ -6,7 +6,6 @@ $Env:UvsTaskSchemaLocation=$("dbSchema.sql")
 
 Write-Host ""
 Write-Host "This script will set up a postgres database hosted in a docker container"
-read-host "Press ENTER to continue"
 
 docker pull postgres
 if (-not $?) { exit 1 }

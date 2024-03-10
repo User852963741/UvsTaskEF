@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-
 public class EmployeesContext : DbContext
 {
-    public DbSet<Employee> employees { get; set; }
+    public DbSet<Employee>? employees { get; set; }
+    private static readonly string? ConnectionString = Environment.GetEnvironmentVariable("connectionString");
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(connectionString:
+        optionsBuilder.UseNpgsql(connectionString: ConnectionString ??
            "Server=localhost;Port=7777;User Id=postgres;Password=guest;Database=uvsproject;");
         base.OnConfiguring(optionsBuilder);
     }
